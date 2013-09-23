@@ -1,6 +1,6 @@
 require 'sinatra/base'
 
-class bookmarkmanager < Sinatra::Base
+class BookmarkManager < Sinatra::Base
   get '/' do
     'Hello bookmarkmanager!'
   end

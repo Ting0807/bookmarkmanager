@@ -18,6 +18,11 @@ group :development, :test do
 	gem 'rspec'
 	gem 'data_mapper'
 	gem 'dm-postgres-adapter'
+	gem 'guard'
+	gem 'guard-cucumber'
+	gem 'guard-rspec'
+	gem 'terminal-notifier-guard'
+	
 	
 end
 

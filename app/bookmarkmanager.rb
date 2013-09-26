@@ -1,10 +1,12 @@
 require 'sinatra/base'
 require 'haml'
 require 'data_mapper'
+require './lib/link'
 
 class BookmarkManager < Sinatra::Base
 
   get '/' do
+  	@links = Link.all
     haml :index
   end
 
@@ -15,7 +17,7 @@ env = ENV["RACK_ENV"] || "development"
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 
 # step two: do the actual work
-require './lib/link' # this needs to be done after datamapper is initialised
+ # this needs to be done after datamapper is initialised
 
 # step three: After declaring your models, you should finalise them
 DataMapper.finalize

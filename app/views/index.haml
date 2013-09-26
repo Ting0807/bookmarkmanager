@@ -1,6 +1,13 @@
-!!!
-%html
-	%body
-		%h1 Welcome to bookmark manger
-		%section
-			%ul
+/ !!!
+/ %html
+/ 	%body
+/ 		%h1 Welcome to bookmark manger
+/ 		%section
+/ 			%ul
+%h1 Welcome to Bookmark Manager
+%section
+  %h3 Current links:
+  %ul
+    - @links.each do |link|
+      %li
+        %a{ href: link.url }= link.title

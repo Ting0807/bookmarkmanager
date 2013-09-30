@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'haml'
 require 'data_mapper'
 require './lib/link'
+require './lib/tag'
 
 class BookmarkManager < Sinatra::Base
 
@@ -9,6 +10,25 @@ class BookmarkManager < Sinatra::Base
   	@links = Link.all
     haml :index
   end
+ 
+ post '/links' do
+  url = params["url"]
+  title = params["title"]
+  tags = params["tags"].split(" ").map do |tag|
+  # this will either find this tag or create
+  # it if it doesn't exist already
+  Tag.first_or_create(:text => tag)
+end
+Link.create(:url => url, :title => title, :tags => tags)
+  # Link.create(:url => url, :title => title)
+  redirect to('/')
+end
+
+get '/tags/:text' do
+  tag = Tag.first(:text => params[:text])
+  @links = tag ? tag.links : []
+  haml :index
+end
 
 
 env = ENV["RACK_ENV"] || "development"

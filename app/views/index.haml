@@ -1,9 +1,10 @@
-/ !!!
-/ %html
-/ 	%body
-/ 		%h1 Welcome to bookmark manger
-/ 		%section
-/ 			%ul
+#user
+  - if current_user
+    Welcome,
+    = @current_user.email
+    %form{ action: '/sessions', method: 'post' }
+      %input{ type: 'hidden', name: '_method', value: 'delete' }
+      %input{ type: 'submit', value: 'Sign out' }
 %h1 Welcome to Bookmark Manager
 %section
   %h3 Current links:
@@ -20,4 +21,5 @@
     Tags:
     %input{ type: 'text', name: 'tags' }
     %input{ type: 'submit', value: 'Add link' }
+
     

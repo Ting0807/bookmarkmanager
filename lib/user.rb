@@ -19,7 +19,12 @@ class User
   # and save it in the database. This digest, provided by bcrypt,
   # has both the password hash and the salt. We save it to the 
   # database instead of the plain password for security reasons.
+  # def password=(password)
+  #   self.password_digest = BCrypt::Password.create(password)
+  # end
+
   def password=(password)
+    @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
